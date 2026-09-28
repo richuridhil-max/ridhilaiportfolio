@@ -11,59 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initPromptPlayground();
   initContactModal();
   initMobileMenu();
-  initPhotoReplace();
   initFontSwitcher();
+  // Clear any legacy client-side photo cache so the official asset always loads
+  try { localStorage.removeItem('ridhil_custom_user_photo'); } catch (e) {}
 });
-
-// Photo Replace / Custom Upload with Local Persistence
-function initPhotoReplace() {
-  const cardContainer = document.getElementById('portrait-card');
-  const fileInput = document.getElementById('user-photo-upload');
-  const portraitImg = document.getElementById('hero-portrait-img');
-
-  if (!cardContainer || !fileInput || !portraitImg) return;
-
-  // Check if user previously saved a custom photo
-  const savedPhoto = localStorage.getItem('ridhil_custom_user_photo');
-  if (savedPhoto) {
-    portraitImg.src = savedPhoto;
-  } else {
-    portraitImg.src = 'assets/ridhil_professional_portrait.png';
-  }
-
-  // Clicking portrait card triggers file dialog
-  cardContainer.addEventListener('click', (e) => {
-    fileInput.click();
-  });
-
-  // Handle selected file
-  fileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (!file.type.startsWith('image/')) {
-      showToast('Please select a valid image file');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const dataUrl = event.target.result;
-      portraitImg.style.opacity = '0';
-      setTimeout(() => {
-        portraitImg.src = dataUrl;
-        portraitImg.style.opacity = '1';
-        try {
-          localStorage.setItem('ridhil_custom_user_photo', dataUrl);
-        } catch (err) {
-          console.warn('Image too large for localStorage, displayed for session.');
-        }
-        showToast('Photo replaced with professional clarity! ✨');
-      }, 150);
-    };
-    reader.readAsDataURL(file);
-  });
-}
 
 // Hero Font Style Switcher
 function initFontSwitcher() {

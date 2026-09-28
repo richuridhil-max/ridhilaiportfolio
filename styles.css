@@ -557,47 +557,6 @@ body {
   transform: scale(1.02);
 }
 
-/* Non-intrusive hover overlay to change photo */
-.photo-replace-trigger {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.hero-real-portrait-card:hover .photo-replace-trigger {
-  opacity: 1;
-}
-
-.photo-replace-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.55rem 1.15rem;
-  border-radius: 9999px;
-  font-size: 0.78rem;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  color: #FFFFFF;
-  backdrop-filter: blur(8px);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.photo-replace-pill:hover {
-  transform: scale(1.05);
-  background: #0F172A;
-}
-
 /* ==========================================================================
    PROJECT CARDS & MARQUEE
    ========================================================================== */
