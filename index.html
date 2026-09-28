@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ridhil — AI Content Creator & Visual Storyteller</title>
+  <meta name="description" content="Official portfolio of Ridhil, an AI Content Creator directing generative cinema, viral AI storytelling, and bespoke brand campaigns.">
+
+  <!-- Tailwind CSS CDN for utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Stylesheet matching reference layout -->
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brandDark: '#090A0F',
+            brandSurface: '#12141D',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen relative antialiased selection:bg-black selection:text-white">
+
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR (MATCHING REFERENCE IMAGE 1)
+       ========================================================================== -->
+  <header class="w-full max-w-7xl mx-auto px-6 py-5 flex items-center justify-between relative z-40">
+    <!-- Left: Available for New Project Pill Badge -->
+    <div class="flex items-center">
+      <div class="status-pill cursor-pointer hover:border-emerald-400 transition-colors">
+        <span class="pulse-dot"></span>
+        <span class="tracking-tight text-xs md:text-sm font-semibold">Available for New Project</span>
+      </div>
+    </div>
+
+    <!-- Center: Editorial Navigation Links with Bracketed Counters -->
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="#story" class="nav-link">Story <span class="nav-counter">[Bio]</span></a>
+      <a href="#work" class="nav-link">Work <span class="nav-counter">[18]</span></a>
+      <a href="#services" class="nav-link">Services <span class="nav-counter">[6]</span></a>
+      <a href="#skills" class="nav-link">Skills <span class="nav-counter">[Stack]</span></a>
+      <a href="#playground" class="nav-link">Playground <span class="nav-counter">[AI]</span></a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Right: Accent Selector, Theme Switcher & "Let's Talk ↗" Pill Button -->
+    <div class="flex items-center space-x-3">
+      <!-- Accent Palette Selector (4 Pure Design Accents) -->
+      <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 shadow-xs" title="Choose Accent Color">
+        <button class="accent-dot-btn bg-blue-600 active" data-accent="cobalt" title="Cobalt Blue"></button>
+        <button class="accent-dot-btn bg-emerald-500" data-accent="emerald" title="Emerald Teal"></button>
+        <button class="accent-dot-btn bg-indigo-500" data-accent="violet" title="Creative Violet"></button>
+        <button class="accent-dot-btn bg-slate-800 dark:bg-slate-200" data-accent="monochrome" title="Slate Minimal"></button>
+      </div>
+
+      <!-- Theme Switcher Pill (Executive Light <-> Midnight Slate) -->
+      <button id="theme-toggle" class="p-2 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 transition-all flex items-center gap-1.5 px-3 text-xs font-medium cursor-pointer" title="Toggle Light/Dark Theme">
+        <svg id="theme-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <span id="theme-text" class="hidden sm:inline">Dark</span>
+      </button>
+
+      <!-- Primary CTA: Let's Talk ↗ -->
+      <a href="#contact" class="btn-pill-primary">
+        <span>Let's Talk</span>
+        <svg class="w-3.5 h-3.5 transform translate-y-[-1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7M17 7V17"></path>
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-nav" class="hidden md:hidden px-6 py-4 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 flex flex-col space-y-3 z-50 relative">
+    <a href="#story" class="text-sm font-medium py-1">Story [Bio]</a>
+    <a href="#work" class="text-sm font-medium py-1">Work [18]</a>
+    <a href="#services" class="text-sm font-medium py-1">Services [6]</a>
+    <a href="#skills" class="text-sm font-medium py-1">Skills [Stack]</a>
+    <a href="#playground" class="text-sm font-medium py-1">Playground [AI]</a>
+    <a href="#contact" class="text-sm font-medium py-1">Contact</a>
+    <div class="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
+      <span class="text-xs font-mono text-slate-500">Accent Theme</span>
+      <div class="flex items-center gap-1.5">
+        <button class="accent-dot-btn bg-blue-600 active" data-accent="cobalt" title="Cobalt Blue"></button>
+        <button class="accent-dot-btn bg-emerald-500" data-accent="emerald" title="Emerald Teal"></button>
+        <button class="accent-dot-btn bg-indigo-500" data-accent="violet" title="Creative Violet"></button>
+        <button class="accent-dot-btn bg-slate-800 dark:bg-slate-200" data-accent="monochrome" title="Slate Minimal"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HERO SECTION (1:1 RECREATION OF REFERENCE COMPOSITION)
+       ========================================================================== -->
+  <section class="relative w-full max-w-7xl mx-auto px-6 pt-4 pb-16 md:pt-6 md:pb-24 overflow-hidden">
+    
+    <!-- 1. Prominent Headline: JUST "RIDHIL" (Professional Sans-Serif) -->
+    <div class="w-full text-center select-none pt-2 pb-2 md:pt-4 md:pb-3 relative z-10">
+      <h1 id="hero-name-display" class="hero-display-text tracking-tight uppercase font-preset-jakarta">
+        RIDHIL
+      </h1>
+      
+      <!-- Professional Font Style Switcher -->
+      <div class="flex items-center justify-center flex-wrap gap-2 mt-2">
+        <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500">Font:</span>
+        <button class="font-pill-btn active" data-font="jakarta">Jakarta Bold</button>
+        <button class="font-pill-btn" data-font="syne">Syne Creative</button>
+        <button class="font-pill-btn" data-font="space">Space Tech</button>
+        <button class="font-pill-btn" data-font="inter">Inter Precision</button>
+      </div>
+    </div>
+
+    <!-- 2. Hero Content: Equal 3-Column Layout with Dead-Centered Clean Portrait -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 mt-4 md:mt-8 relative z-20 w-full">
+      
+      <!-- Left Column: Role, Description, and "Let's collaborate ↗" Button -->
+      <div class="w-full lg:w-1/3 flex flex-col items-start text-left order-2 lg:order-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-xs font-mono font-medium text-blue-700 dark:text-sky-300 mb-4 border border-blue-200 dark:border-blue-800/60 shadow-xs">
+          <span class="text-blue-600 dark:text-sky-400">✦</span>
+          <span>B.Com to AI Creator & Technologist</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold font-display tracking-tight leading-tight text-slate-900 dark:text-white mb-3">
+          AI Content Creator & Visual Storyteller
+        </h2>
+
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6 max-w-sm">
+          Left accounting behind to transform bold ideas into cinematic reality. Directing AI videos and creative digital experiences with <strong>Nano Banana OmniFlash</strong>, <strong>Seedance</strong>, <strong>Kling</strong>, and <strong>Flow</strong>.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Let's Collaborate Button (Matching reference) -->
+          <a href="#contact" class="btn-pill-primary">
+            <span>Let's collaborate</span>
+            <svg class="w-3.5 h-3.5 transform translate-y-[-1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7M17 7V17"></path>
+            </svg>
+          </a>
+
+          <!-- View Story Pill -->
+          <a href="#story" class="btn-pill-secondary">
+            <span>Read Story</span>
+          </a>
+        </div>
+
+        <!-- Quick Stats Badge -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center gap-6">
+          <div>
+            <div class="text-xl font-bold font-display text-slate-900 dark:text-white">10M+</div>
+            <div class="text-xs text-slate-500 font-medium">Organic Impressions</div>
+          </div>
+          <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800"></div>
+          <div>
+            <div class="text-xl font-bold font-display text-slate-900 dark:text-white">6+</div>
+            <div class="text-xs text-slate-500 font-medium">Core Capabilities</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Column: Truly Dead-Centered Clean Portrait -->
+      <div class="w-full lg:w-1/3 flex justify-center items-center relative order-1 lg:order-2">
+        <div class="hero-portrait-wrapper relative w-full flex justify-center">
+          
+          <!-- Ambient Backlight Glow -->
+          <div id="hero-ambient-glow" class="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-indigo-500/5 to-transparent rounded-full blur-3xl opacity-50 dark:opacity-30 pointer-events-none transition-all duration-500"></div>
+
+          <!-- Hidden File Input for Custom Upload -->
+          <input type="file" id="user-photo-upload" accept="image/*" class="hidden">
+
+          <!-- Clean Professional Portrait Card (Natural Color Studio Grade) -->
+          <div class="hero-real-portrait-card group select-none" id="portrait-card">
+            <img 
+              id="hero-portrait-img"
+              src="assets/ridhil_professional_portrait.png" 
+              alt="Ridhil — AI Content Creator" 
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+
+            <!-- Non-intrusive hover overlay to change photo -->
+            <div class="photo-replace-trigger" id="btn-trigger-upload" title="Click anywhere on photo to replace with your own image">
+              <div class="photo-replace-pill">
+                <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                </svg>
+                <span>Click to Replace Photo</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Floating Social Pills Stack (Matching Reference) -->
+      <div class="w-full lg:w-1/3 flex flex-col items-start lg:items-end space-y-3 order-3 pt-4 lg:pt-0">
+        
+        <!-- YouTube / Dribbble -->
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-pill group">
+          <svg class="w-4 h-4 text-slate-600 dark:text-slate-300" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          <span class="font-medium text-xs sm:text-sm">YouTube</span>
+          <span class="text-[10px] font-mono text-slate-400 font-semibold group-hover:text-blue-600 dark:group-hover:text-sky-400">120k</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill group">
+          <svg class="w-4 h-4 text-slate-600 dark:text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span class="font-medium text-xs sm:text-sm">Instagram</span>
+          <span class="text-[10px] font-mono text-slate-400 font-semibold group-hover:text-blue-600 dark:group-hover:text-sky-400">@ridhil.ai</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill group">
+          <svg class="w-4 h-4 text-slate-600 dark:text-slate-300" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span class="font-medium text-xs sm:text-sm">LinkedIn</span>
+          <span class="text-[10px] font-mono text-slate-400 font-semibold group-hover:text-blue-600 dark:group-hover:text-sky-400">Connect</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/?text=Hi%20Ridhil,%20I%20saw%20your%20portfolio" target="_blank" rel="noopener noreferrer" class="social-pill group">
+          <svg class="w-4 h-4 text-slate-600 dark:text-slate-300 group-hover:text-emerald-500 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25.7-1.44 1.32-1.99 1.39-.51.07-1.18.1-3.41-.83-2.48-1.04-4.07-3.57-4.19-3.74-.12-.17-1-1.34-1-2.55s.64-1.81.87-2.06c.23-.25.5-.31.67-.31.17 0 .34 0 .49.01.15.01.36-.06.56.43.21.5.72 1.75.78 1.88.06.13.1.28.02.45-.09.17-.13.28-.26.43-.13.15-.27.34-.39.46-.13.13-.26.27-.11.53.15.26.67 1.1 1.44 1.79.99.88 1.83 1.15 2.09 1.28.26.13.41.11.56-.06.15-.17.65-.75.82-1.01.17-.26.35-.22.58-.13.24.09 1.5.71 1.76.84.26.13.43.19.49.3.06.11.06.64-.19 1.34z"/>
+          </svg>
+          <span class="font-medium text-xs sm:text-sm">WhatsApp</span>
+          <span class="text-[10px] font-mono text-slate-400 font-semibold group-hover:text-emerald-500">Chat</span>
+        </a>
+
+        <!-- Behance -->
+        <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="social-pill group">
+          <svg class="w-4 h-4 text-slate-600 dark:text-slate-300" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-4.106 0-5.625-3.047-5.625-5.961 0-3.158 1.849-6.039 5.565-6.039 3.992 0 5.253 2.924 5.253 5.485 0 .524-.047 1.096-.089 1.516h-7.653c.099 2.193 1.854 2.875 3.328 2.875 1.547 0 2.502-.676 2.894-1.464l1.428.588zm-5.201-5.118c-.024-1.355-.839-2.529-2.316-2.529-1.503 0-2.33 1.157-2.457 2.529h4.773zm-11.525-4.882h-7v14h7.086c3.486 0 5.414-1.95 5.414-4.597 0-1.745-.989-3.052-2.55-3.606 1.18-.518 1.959-1.688 1.959-3.197 0-2.557-2.027-4.6-4.909-4.6zm-3.882 5.414h3.332c1.374 0 2.219.684 2.219 1.884 0 1.258-.918 1.933-2.296 1.933h-3.255v-3.817zm0 5.922h3.633c1.604 0 2.531.782 2.531 2.158 0 1.341-.954 2.193-2.617 2.193h-3.547v-4.351z"/>
+          </svg>
+          <span class="font-medium text-xs sm:text-sm">Behance</span>
+          <span class="text-[10px] font-mono text-slate-400 font-semibold group-hover:text-blue-600 dark:group-hover:text-sky-400">Portfolio</span>
+        </a>
+
+        <!-- Mini Location & Time Pill -->
+        <div class="pt-4 flex items-center gap-2 text-xs text-slate-500 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Bengaluru, IN</span>
+          <span class="text-slate-300 dark:text-slate-700">|</span>
+          <span id="live-time" class="font-semibold text-slate-900 dark:text-white">--:-- IST</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MY STORY & ORIGIN: FROM ACCOUNTING TO AI CREATOR
+       ========================================================================== -->
+  <section id="story" class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+    <div class="p-8 sm:p-12 md:p-14 rounded-3xl bg-gradient-to-br from-white via-slate-50 to-blue-50/40 dark:from-slate-900 dark:via-slate-900/90 dark:to-blue-950/20 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+      
+      <!-- Ambient decorative glow -->
+      <div class="absolute -right-24 -top-24 w-96 h-96 bg-blue-500/10 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        
+        <!-- Left: Statement & Vision -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-xs font-mono font-medium text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">
+            <span class="text-blue-600 dark:text-sky-400">✦</span>
+            <span>Origin & Core Philosophy</span>
+          </div>
+
+          <h3 class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white leading-tight">
+            "I left accounting behind to turn imagination into cinematic reality."
+          </h3>
+
+          <p class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest pt-2">
+            Ridhil — AI Content Creator • Creative Technologist
+          </p>
+
+          <div class="pt-4 flex items-center gap-4 text-xs font-mono text-slate-600 dark:text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              <span>B.Com Analytical Mindset</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+              <span>Next-Gen AI Workflows</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Authentic Journey Narrative & Tool Stack -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p>
+              I started my journey as a <strong>B.Com student</strong> and initially pursued a career in accounting. However, my deep passion for creativity and technology led me to explore the rapidly evolving world of <strong>AI Content Creation</strong>.
+            </p>
+            <p>
+              Recognizing that generative technology could democratize high-end filmmaking and digital artistry, I made the bold decision to leave accounting behind. I dedicated myself to crafting innovative, AI-powered content — seamlessly combining <strong>creative storytelling, human emotion, and next-generation technology</strong> to bring ideas to life.
+            </p>
+            <p>
+              Today, I direct high-fidelity cinematic videos, viral social narratives, and creative digital experiences using an advanced toolkit featuring <strong>Nano Banana OmniFlash</strong>, <strong>Seedance</strong>, <strong>Kling</strong>, and <strong>Flow</strong>.
+            </p>
+          </div>
+
+          <!-- Feature Tag Pills -->
+          <div class="pt-2 flex flex-wrap gap-2">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">🎬 AI Video Creation</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">⚡ Nano Banana OmniFlash</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">🌱 Seedance</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">🎥 Kling Video</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">🌊 Flow</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">💻 Vibe Coding</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">✨ Prompt Engineering</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 shadow-xs">🎯 Social Strategy & Branding</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       AI STACK MARQUEE
+       ========================================================================== -->
+  <section class="py-6 border-y border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/40 overflow-hidden">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <!-- Repeating Stack Badges -->
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Nano Banana OmniFlash
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Seedance AI Video
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Kling AI Video
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Flow Creative Suite
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Vibe Coding & Web Prototypes
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Advanced Prompt Engineering
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Cinematic Storytelling
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Social Media Marketing & Growth
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Graphic Design & Digital Branding
+        </div>
+
+        <!-- Duplicate for infinite smooth loop -->
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Nano Banana OmniFlash
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Seedance AI Video
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Kling AI Video
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Flow Creative Suite
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Vibe Coding & Web Prototypes
+        </div>
+        <div class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-800 dark:text-slate-200 font-display">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Advanced Prompt Engineering
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FEATURED WORK / PROJECTS SECTION (Work [18])
+       ========================================================================== -->
+  <section id="work" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-semibold mb-2">
+          <span>01 / Portfolio</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight text-slate-900 dark:text-white">
+          Selected AI Works <span class="text-slate-400 dark:text-slate-500 font-normal font-mono text-2xl">[18]</span>
+        </h2>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 mt-6 md:mt-0">
+        <button class="filter-btn active" data-filter="all">All [18]</button>
+        <button class="filter-btn" data-filter="cinema">Cinema</button>
+        <button class="filter-btn" data-filter="fashion">Editorial</button>
+        <button class="filter-btn" data-filter="commercial">Commercial</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Project 1: Chronos 2099 -->
+      <div class="project-card project-item group" data-category="cinema">
+        <div class="project-image-wrap">
+          <img src="assets/project_cinema.jpg" alt="Chronos 2099 AI Film" class="w-full h-full object-cover">
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="tech-tag">Nano Banana</span>
+            <span class="tech-tag">Seedance</span>
+          </div>
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
+            <button class="inspect-prompt-btn px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs tracking-wide shadow-lg hover:bg-slate-100 transition-colors" data-key="cinema">
+              Behind The Generation ↗
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+            <span>Sci-Fi AI Film</span>
+            <span>2026</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+            Chronos 2099 — Neo-Tokyo Rain
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 mb-4 leading-relaxed">
+            Multi-scene cinematic sci-fi trailer directed with customized camera arcs, coherent character keyframing, and custom sound design.
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+            <span class="text-xs font-medium text-slate-500">Awards: Top Generative Short</span>
+            <button class="inspect-prompt-btn text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1" data-key="cinema">
+              View Recipe & Prompt <span>↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Avant-Garde Void -->
+      <div class="project-card project-item group" data-category="fashion">
+        <div class="project-image-wrap">
+          <img src="assets/project_fashion.jpg" alt="Avant-Garde Void Fashion Campaign" class="w-full h-full object-cover">
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="tech-tag">OmniFlash</span>
+            <span class="tech-tag">Flow</span>
+          </div>
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
+            <button class="inspect-prompt-btn px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs tracking-wide shadow-lg hover:bg-slate-100 transition-colors" data-key="fashion">
+              Behind The Generation ↗
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+            <span>High Fashion Editorial</span>
+            <span>2026</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+            Avant-Garde Void — Liquid Silk
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 mb-4 leading-relaxed">
+            Haute couture visual campaign exploring iridescent organic drapery and brutalist architecture. Generated for an editorial digital lookbook.
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+            <span class="text-xs font-medium text-slate-500">Reach: 2.4M Views</span>
+            <button class="inspect-prompt-btn text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1" data-key="fashion">
+              View Recipe & Prompt <span>↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Solitude Noir -->
+      <div class="project-card project-item group" data-category="commercial">
+        <div class="project-image-wrap">
+          <img src="assets/project_auto.jpg" alt="Solitude Noir Automotive Commercial" class="w-full h-full object-cover">
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="tech-tag">Kling AI</span>
+            <span class="tech-tag">Flow</span>
+          </div>
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
+            <button class="inspect-prompt-btn px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs tracking-wide shadow-lg hover:bg-slate-100 transition-colors" data-key="auto">
+              Behind The Generation ↗
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+            <span>Automotive Spec Ad</span>
+            <span>2025</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+            Solitude Noir — Aerodynamic Dawn
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 mb-4 leading-relaxed">
+            Ultra-crisp automotive prototype reveal with controlled studio rim reflections, motion tracked camera angles, and atmospheric lighting.
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+            <span class="text-xs font-medium text-slate-500">Client: Prototype Pitch</span>
+            <button class="inspect-prompt-btn text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1" data-key="auto">
+              View Recipe & Prompt <span>↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SPECIALIZED AI SERVICES SECTION (Services [6])
+       ========================================================================== -->
+  <section id="services" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-200 dark:border-slate-800">
+    <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-semibold mb-2">
+      <span>02 / Services</span>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight text-slate-900 dark:text-white">
+          Services <span class="text-slate-400 dark:text-slate-500 font-normal font-mono text-2xl">[6]</span>
+        </h2>
+        <p class="text-xs font-mono text-slate-500 mt-2">
+          Tailored AI Production · High-Impact Creatives · Strategic Advisory
+        </p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 max-w-sm mt-3 md:mt-0">
+        Empowering brands, creators, and businesses with commercial-grade generative content, video direction, and strategic marketing.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Service 1: AI Content Creation -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">01</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Creative Assets</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            AI Content Creation
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Create engaging AI-generated content for businesses, creators, and brands, including images, videos, and marketing assets.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> High-Impact Images & Digital Art</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Multi-Format Marketing Collateral</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Tailored for Businesses & Creators</li>
+        </ul>
+      </div>
+
+      <!-- Service 2: AI Video Production -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">02</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Cinematic Motion</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            AI Video Production
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Produce cinematic AI commercials, product advertisements, social media reels, and storytelling videos using advanced AI tools.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Cinematic Commercials & Spec Ads</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> High-Retention Viral Reels & Shorts</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Seedance, Kling & Flow Synthesis</li>
+        </ul>
+      </div>
+
+      <!-- Service 3: Prompt Engineering -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">03</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Precision Syntax</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            Prompt Engineering
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Design optimized prompts for AI image, video, and content generation to deliver consistent, high-quality results.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Nano Banana OmniFlash Optimization</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Character Consistency & Weight Locking</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> High-Quality Reproducible Workflows</li>
+        </ul>
+      </div>
+
+      <!-- Service 4: Social Media Marketing -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">04</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Growth & Reach</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            Social Media Marketing
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Develop content strategies and marketing creatives that improve engagement and strengthen brand presence.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Engagement-Optimized Visual Pacing</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Cross-Platform Marketing Creatives</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Stronger Brand Presence & Retention</li>
+        </ul>
+      </div>
+
+      <!-- Service 5: Graphic Design -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">05</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Brand Collateral</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            Graphic Design
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Design professional posters, banners, social media graphics, presentations, and promotional materials.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Commercial Posters & Digital Banners</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> High-Converting Social Media Graphics</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Executive Presentations & Pitch Decks</li>
+        </ul>
+      </div>
+
+      <!-- Service 6: AI Consulting -->
+      <div class="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-blue-500 transition-all hover:shadow-xl group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-2xl font-black font-display text-slate-300 dark:text-slate-700 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">06</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">Advisory & Scale</span>
+          </div>
+          <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2.5">
+            AI Consulting
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Help businesses and creators adopt AI tools to streamline content creation and improve productivity.
+          </p>
+        </div>
+        <ul class="space-y-1.5 text-xs font-mono text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> AI Tool Adoption & Integration Strategy</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Content Pipeline Streamlining</li>
+          <li class="flex items-center gap-2"><span class="text-blue-600 dark:text-sky-400">✦</span> Measurable Creative Productivity Gains</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SKILLS, TOOLS & CERTIFICATIONS SECTION (Skills [Stack])
+       ========================================================================== -->
+  <section id="skills" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-200 dark:border-slate-800">
+    <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-semibold mb-2">
+      <span>03 / Capabilities & Stack</span>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight text-slate-900 dark:text-white">
+          Skills, Tools & Certifications
+        </h2>
+        <p class="text-xs font-mono text-slate-500 mt-2">
+          Technical Domains · Production Software Ecosystem · Verified Credentials
+        </p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 max-w-sm mt-3 md:mt-0">
+        A comprehensive breakdown of technical proficiencies, advanced generative models, creative software, and professional credentials.
+      </p>
+    </div>
+
+    <!-- 3-Column Bento Grid: Technical Skills | Tools & Software | Certifications -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- Card 1: Technical Skills (4 cols) -->
+      <div class="lg:col-span-4 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-sky-400 font-bold">Domain Expertise</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">10 Skills</span>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-2">
+            Technical Skills
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Core creative, technical, and strategic proficiencies developed through commercial production and continuous practice.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> AI Video Creation
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> AI Content Creation
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Prompt Engineering
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Social Media Marketing
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Content Strategy
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Vibe Coding
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Graphic Design
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Digital Branding
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Creative Storytelling
+            </span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:border-blue-500 transition-colors shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Video Editing
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Tools & Software (5 cols) -->
+      <div class="lg:col-span-5 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-sky-400 font-bold">Production Toolchain</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60">10 Core Tools</span>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-2">
+            Tools & Software
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            A software ecosystem integrating leading AI frontier models with industry-standard design and post-production suites.
+          </p>
+
+          <div class="space-y-4">
+            <!-- Group 1: Frontier AI & LLMs -->
+            <div>
+              <span class="text-[11px] font-mono uppercase text-slate-500 font-bold tracking-wider block mb-2">Frontier LLMs & Reasoning</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-900/60">✦ ChatGPT</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-900/60">✦ Gemini</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-900/60">✦ Claude</span>
+              </div>
+            </div>
+
+            <!-- Group 2: Generative Video & Vision -->
+            <div>
+              <span class="text-[11px] font-mono uppercase text-slate-500 font-bold tracking-wider block mb-2">Generative Video & Media Engines</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">🎬 Nano Banana OmniFlash</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">🌱 Seedance</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">🎥 Kling AI</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">🌊 Flow</span>
+              </div>
+            </div>
+
+            <!-- Group 3: Design & Video Editing -->
+            <div>
+              <span class="text-[11px] font-mono uppercase text-slate-500 font-bold tracking-wider block mb-2">Design & Video Editing Suites</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">🎨 Canva</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">🖼️ Adobe Photoshop</span>
+                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">✂️ CapCut</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Certifications (3 cols) -->
+      <div class="lg:col-span-3 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-sky-400 font-bold">Credentials</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">Verified</span>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-2">
+            Certifications
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            Formal and specialized certifications validating advanced generative mastery.
+          </p>
+
+          <div class="space-y-3">
+            <!-- Cert 1: Ongoing -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-slate-900 dark:text-white font-display">AI Creation & Marketing</span>
+                <span class="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Ongoing
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Commercial generative workflows, monetization, and brand marketing.</p>
+            </div>
+
+            <!-- Cert 2: Prompt Engineering -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-slate-900 dark:text-white font-display">Prompt Engineering</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-sky-300 font-semibold border border-blue-200 dark:border-blue-800">
+                  Certified ✓
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">High-precision multimodal prompting, syntax architecture, and output locking.</p>
+            </div>
+
+            <!-- Cert 3: AI Content Creation -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-slate-900 dark:text-white font-display">AI Content Creation</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-sky-300 font-semibold border border-blue-200 dark:border-blue-800">
+                  Certified ✓
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Cinematic visual direction, generative storytelling, and digital production.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE PROMPT PLAYGROUND WIDGET (Hands-on demo)
+       ========================================================================== -->
+  <section id="playground" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-200 dark:border-slate-800">
+    <div class="p-8 md:p-12 rounded-3xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-xl" id="prompt-playground">
+      
+      <div class="max-w-2xl mb-8">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-semibold mb-2">
+          <span>04 / Interactive Engine</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800/60 text-xs font-mono font-medium mb-3">
+          <span class="text-blue-600 dark:text-sky-400">✦</span> Live Interactive Demo
+        </div>
+        <h2 class="text-2xl md:text-4xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mb-2">
+          The Prompt Architecture Engine
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          Select creative variables to construct an industry-grade prompt formula used in Ridhil's commercial productions.
+        </p>
+      </div>
+
+      <!-- Ingredient Selectors -->
+      <div class="space-y-6 mb-8">
+        
+        <!-- Subject Selection -->
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">01 / Subject & Character</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="playground-option prompt-badge active px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="subject" data-val="Cybernetic Nomad in weathered trenchcoat">Cybernetic Nomad</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="subject" data-val="Haute couture model in iridescent glass dress">Haute Couture Fashion Model</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="subject" data-val="Stealth hypercar prototype on wet asphalt">Stealth Hypercar Concept</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="subject" data-val="Ethereal biomechanical sculpture in brutalist museum">Biomechanical Sculpture</button>
+          </div>
+        </div>
+
+        <!-- Camera & Lens -->
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">02 / Optics & Lens Specification</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="playground-option prompt-badge active px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="camera" data-val="Anamorphic 35mm Panavision Lens, subtle lens flare">35mm Anamorphic</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="camera" data-val="Hasselblad H6D-100c 85mm f/1.2 Editorial Portrait">85mm f/1.2 Editorial</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="camera" data-val="Low-angle wide 24mm tracking camera">24mm Dynamic Low Angle</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="camera" data-val="Macro cinematic probe lens capturing tactile texture">Macro Probe Lens</button>
+          </div>
+        </div>
+
+        <!-- Lighting & Mood -->
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">03 / Lighting & Atmospheric Condition</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="playground-option prompt-badge active px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="lighting" data-val="Atmospheric rain with vibrant cyan and neon magenta reflections">Cyberpunk Neon Rain</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="lighting" data-val="Volumetric golden hour sunlight filtering through brutalist skylights">Golden Hour Volumetric</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="lighting" data-val="High-contrast chiaroscuro with razor-sharp rim lights">Chiaroscuro Studio Rim</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="lighting" data-val="Ethereal overcast diffuse skybox with cold silver tones">Overcast Ethereal</button>
+          </div>
+        </div>
+
+        <!-- Engine Version -->
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">04 / Model Pipeline</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="playground-option prompt-badge active px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="engine" data-val="Nano Banana OmniFlash">Nano Banana OmniFlash</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="engine" data-val="Seedance AI Video">Seedance</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="engine" data-val="Kling AI Video">Kling</button>
+            <button class="playground-option prompt-badge px-3.5 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-cat="engine" data-val="Flow Creative Suite">Flow</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Generated Prompt Box -->
+      <div class="p-5 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 relative shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-slate-500">OUTPUT STRING</span>
+          <button id="copy-playground-prompt" class="btn-pill-primary text-xs !py-1 !px-3">
+            <span>Copy Prompt</span>
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </button>
+        </div>
+        <p id="playground-output" class="font-mono text-xs sm:text-sm text-slate-900 dark:text-slate-100 leading-relaxed break-all select-all">
+          Loading prompt formula...
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       CONTACT & "LET'S TALK" SECTION (Contact)
+       ========================================================================== -->
+  <section id="contact" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-200 dark:border-slate-800">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Pitch & Instant Email Copy -->
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-semibold mb-2">
+          <span>05 / Connect</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-slate-900 dark:text-white mb-4 leading-tight">
+          Have an ambitious idea? Let's talk.
+        </h2>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+          Whether you need a full generative commercial, a viral social series, or an enterprise workshop on creative AI tooling, I am ready to collaborate.
+        </p>
+
+        <!-- Direct Email Pill with Copy Action -->
+        <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center justify-between mb-6 shadow-xs">
+          <div>
+            <div class="text-xs text-slate-500 font-mono">DIRECT INBOX</div>
+            <div class="text-sm font-semibold text-slate-900 dark:text-white">ridhil.ai.creator@gmail.com</div>
+          </div>
+          <button class="copy-email-btn btn-pill-secondary text-xs !py-1.5 !px-3">
+            Copy
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="text-xs font-medium text-slate-500">Currently taking bookings for Q3 & Q4</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quick Inquiry Form -->
+      <div class="lg:col-span-7">
+        <form id="contact-form" class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-xl space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Your Name</label>
+              <input type="text" id="form-name" required placeholder="e.g. Alex Rivera" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-600 transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Email Address</label>
+              <input type="email" required placeholder="alex@brand.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-600 transition-colors">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Project Type</label>
+            <select class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-600 transition-colors">
+              <option>AI Video Creation & Cinematic Direction (Kling · Seedance · Flow)</option>
+              <option>AI Content Creation & Creative Storytelling</option>
+              <option>Prompt Engineering & Nano Banana OmniFlash</option>
+              <option>Vibe Coding & Interactive Digital Experiences</option>
+              <option>Social Media Marketing & Content Strategy</option>
+              <option>Graphic Design & Digital Branding</option>
+              <option>Brand Partnership / Commercial Ad Pitch</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Project Vision & Timeline</label>
+            <textarea rows="4" required placeholder="Tell me about your goals, target audience, and expected delivery date..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-600 transition-colors resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="btn-pill-primary w-full justify-center !py-3.5 text-sm font-semibold">
+            <span>Send Project Inquiry</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-12 bg-slate-100/60 dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-display font-bold text-lg tracking-wider text-slate-900 dark:text-white">RIDHIL.AI</span>
+        <span class="text-slate-300 dark:text-slate-700">·</span>
+        <span class="text-xs text-slate-500">© 2026 Ridhil. All rights reserved. Directed with Generative AI.</span>
+      </div>
+
+      <div class="flex items-center gap-6 text-xs text-slate-500 font-mono">
+        <a href="#work" class="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">Work</a>
+        <a href="#services" class="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">Services</a>
+        <a href="#skills" class="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">Contact</a>
+        <a href="#" class="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">Back to Top ↑</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PROMPT INSPECTOR MODAL ("BEHIND THE GENERATION")
+       ========================================================================== -->
+  <div id="prompt-modal" class="modal-overlay fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+      
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-sky-400 font-bold">Behind The Generation</span>
+          <h3 id="modal-title" class="text-xl sm:text-2xl font-black font-display text-slate-900 dark:text-white mt-1">
+            Project Recipe
+          </h3>
+          <p id="modal-tools" class="text-xs font-mono text-slate-500 mt-1">Tools</p>
+        </div>
+
+        <button id="close-modal-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-5">
+        
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-mono uppercase text-slate-500">Exact Production Prompt</label>
+            <button id="copy-prompt-btn" class="text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline flex items-center gap-1">
+              Copy Prompt <span>✦</span>
+            </button>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-900 dark:text-slate-100 leading-relaxed break-words shadow-xs" id="modal-prompt">
+            Loading prompt...
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Negative Prompt / Anti-Weights</label>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-600 dark:text-slate-300 leading-relaxed" id="modal-negative">
+            None
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Camera & Motion Parameters</label>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-600 dark:text-slate-300 leading-relaxed" id="modal-motion">
+            Camera parameters
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-slate-500 mb-2">Director's Production Notes</label>
+          <p id="modal-notes" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Notes
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

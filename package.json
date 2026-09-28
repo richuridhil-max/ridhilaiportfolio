@@ -1,0 +1,19 @@
+{
+  "name": "ridhil-portfolio",
+  "version": "1.0.0",
+  "description": "Ridhil — AI Content Creator Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "dev": "powershell -ExecutionPolicy Bypass -File ./serve.ps1",
+    "start": "powershell -ExecutionPolicy Bypass -File ./serve.ps1",
+    "preview": "powershell -ExecutionPolicy Bypass -File ./serve.ps1"
+  },
+  "keywords": [
+    "portfolio",
+    "ai-creator",
+    "generative-ai",
+    "prompt-engineering"
+  ],
+  "author": "Ridhil",
+  "license": "MIT"
+}
