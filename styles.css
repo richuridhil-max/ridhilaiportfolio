@@ -567,6 +567,11 @@ body {
   aspect-ratio: 16 / 10;
 }
 
+.project-image-wrap.vertical-reel {
+  aspect-ratio: 9 / 16 !important;
+  background-color: #020617;
+}
+
 .project-image-wrap img,
 .project-image-wrap video {
   width: 100%;
@@ -576,7 +581,7 @@ body {
 }
 
 .project-card:hover .project-image-wrap img,
-.project-card:hover .project-image-wrap video {
+.project-card:hover .project-image-wrap:not(.vertical-reel) video {
   transform: scale(1.04);
 }
 
@@ -729,7 +734,7 @@ body {
   }
 
   /* Responsive card heights */
-  .project-image-wrap {
+  .project-image-wrap:not(.vertical-reel) {
     aspect-ratio: 16 / 10;
   }
 }
