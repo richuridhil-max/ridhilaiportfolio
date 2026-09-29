@@ -144,6 +144,14 @@ function initFilters() {
 
 // 4. PROMPT RECIPE INSPECTOR MODAL
 const promptDatabase = {
+  'zanotic': {
+    title: 'Zanotic — Luxury Perfume Commercial',
+    tools: 'Live Camera Direction + Studio Lighting + Premiere Pro / Flow Suite',
+    prompt: 'Commercial product cinematography for Zanotic luxury perfume, dark moody aesthetic, rim highlights tracing bottle silhouette, macro tactile hand interaction, 1080x1920 vertical commercial format, studio color grading.',
+    negative: 'Overexposed, shaky camera, low resolution, poor lighting, unnatural reflections',
+    motion: 'Slow tactile reveal, dramatic rim lighting pan, focused macro depth of field',
+    notes: 'Directed and edited as a high-conversion commercial video showcase for luxury fragrance branding, combining dynamic product reveal with atmospheric sound design.'
+  },
   'cinema': {
     title: 'Chronos 2099 — Sci-Fi Generative Film',
     tools: 'Nano Banana OmniFlash + Seedance AI Video + Flow',
