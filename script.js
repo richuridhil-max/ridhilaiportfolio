@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTime();
   initFilters();
   initPromptInspector();
-  initPromptPlayground();
   initContactModal();
   initMobileMenu();
   initFontSwitcher();
@@ -259,55 +258,7 @@ function initPromptInspector() {
   }
 }
 
-// 5. INTERACTIVE PROMPT PLAYGROUND WIDGET
-function initPromptPlayground() {
-  const playground = document.getElementById('prompt-playground');
-  if (!playground) return;
-
-  const state = {
-    subject: 'Cybernetic Nomad in weathered trenchcoat',
-    camera: 'Anamorphic 35mm Panavision Lens, subtle lens flare',
-    lighting: 'Atmospheric rain with vibrant cyan and neon magenta reflections',
-    engine: 'Nano Banana OmniFlash'
-  };
-
-  const outputEl = document.getElementById('playground-output');
-  const copyPlaygroundBtn = document.getElementById('copy-playground-prompt');
-
-  function updatePrompt() {
-    if (!outputEl) return;
-    const promptString = `/imagine prompt: ${state.subject}, captured on ${state.camera}, illuminated by ${state.lighting}, photorealistic 8k, cinematic visual storytelling --ar 16:9 --pipeline [${state.engine}]`;
-    outputEl.textContent = promptString;
-  }
-
-  document.querySelectorAll('.playground-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const category = btn.getAttribute('data-cat');
-      const value = btn.getAttribute('data-val');
-
-      // Update active state in group
-      btn.parentElement.querySelectorAll('.playground-option').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      state[category] = value;
-      updatePrompt();
-    });
-  });
-
-  if (copyPlaygroundBtn) {
-    copyPlaygroundBtn.addEventListener('click', () => {
-      if (outputEl) {
-        navigator.clipboard.writeText(outputEl.textContent).then(() => {
-          showToast('Generated Prompt copied to clipboard! ✦');
-        });
-      }
-    });
-  }
-
-  updatePrompt();
-}
-
-// 6. CONTACT DRAWER / MODAL & EMAIL COPY
+// 5. CONTACT DRAWER / MODAL & EMAIL COPY
 function initContactModal() {
   const copyEmailBtns = document.querySelectorAll('.copy-email-btn');
   const contactForm = document.getElementById('contact-form');

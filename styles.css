@@ -636,20 +636,6 @@ body {
   animation-play-state: paused;
 }
 
-/* Prompt Playground Widget */
-.prompt-badge {
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
-}
-
-.prompt-badge.active {
-  background-color: var(--accent-primary) !important;
-  color: #FFFFFF !important;
-  border-color: transparent !important;
-  box-shadow: 0 4px 12px var(--accent-glow);
-}
-
 /* Modal styling */
 .modal-overlay {
   opacity: 0;
