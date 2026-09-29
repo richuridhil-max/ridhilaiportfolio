@@ -6,6 +6,11 @@
   <title>Ridhil — AI Content Creator</title>
   <meta name="description" content="Official portfolio of Ridhil, an AI Content Creator directing generative cinema, viral AI storytelling, and bespoke brand campaigns.">
 
+  <!-- Google Fonts: Poppins (Primary), JetBrains Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS CDN for utility classes -->
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -18,8 +23,8 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+            sans: ['Poppins', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
@@ -122,16 +127,16 @@
     
     <!-- 1. Prominent Headline: JUST "RIDHIL" (Professional Sans-Serif) -->
     <div class="w-full text-center select-none pt-2 pb-2 md:pt-4 md:pb-3 relative z-10">
-      <h1 id="hero-name-display" class="hero-display-text tracking-tight uppercase font-preset-jakarta">
+      <h1 id="hero-name-display" class="hero-display-text tracking-tight uppercase font-preset-poppins">
         RIDHIL
       </h1>
       
       <!-- Professional Font Style Switcher -->
       <div class="flex items-center justify-center flex-wrap gap-2 mt-2">
         <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500">Font:</span>
-        <button class="font-pill-btn active" data-font="jakarta">Jakarta Bold</button>
+        <button class="font-pill-btn active" data-font="poppins">Poppins Bold</button>
+        <button class="font-pill-btn" data-font="jakarta">Jakarta</button>
         <button class="font-pill-btn" data-font="syne">Syne Creative</button>
-        <button class="font-pill-btn" data-font="space">Space Tech</button>
         <button class="font-pill-btn" data-font="inter">Inter Precision</button>
       </div>
     </div>

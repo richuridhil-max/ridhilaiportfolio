@@ -2,11 +2,11 @@
    RIDHIL PORTFOLIO - PROFESSIONAL CREATIVE & TECH STYLESHEET
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap');
 
 :root {
-  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* PROFESSIONAL EXECUTIVE PALETTE (Light Mode: Clean Slate & Royal Cobalt) */
@@ -295,6 +295,12 @@ body {
 }
 
 /* Professional Font Presets */
+.font-preset-poppins {
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 800 !important;
+}
+
 .font-preset-jakarta {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
   letter-spacing: -0.03em !important;

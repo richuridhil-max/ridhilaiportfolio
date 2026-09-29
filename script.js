@@ -22,7 +22,7 @@ function initFontSwitcher() {
   const heroText = document.getElementById('hero-name-display');
   if (!heroText || !fontBtns.length) return;
 
-  const fontClasses = ['font-preset-jakarta', 'font-preset-syne', 'font-preset-space', 'font-preset-inter'];
+  const fontClasses = ['font-preset-poppins', 'font-preset-jakarta', 'font-preset-syne', 'font-preset-space', 'font-preset-inter'];
 
   function applyFont(fontKey) {
     fontClasses.forEach(cls => heroText.classList.remove(cls));
@@ -38,8 +38,11 @@ function initFontSwitcher() {
     });
   }
 
-  // Restore saved font or default to jakarta
-  const savedFont = localStorage.getItem('ridhil_hero_font') || 'jakarta';
+  // Restore saved font or default to poppins (override legacy default jakarta)
+  let savedFont = localStorage.getItem('ridhil_hero_font');
+  if (!savedFont || savedFont === 'jakarta') {
+    savedFont = 'poppins';
+  }
   applyFont(savedFont);
 
   fontBtns.forEach(btn => {
