@@ -325,27 +325,6 @@ body {
   font-weight: 800 !important;
 }
 
-/* Font selector button */
-.font-pill-btn {
-  font-size: 0.72rem;
-  font-family: var(--font-sans);
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  border: 1px solid var(--border-light);
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.font-pill-btn.active, .font-pill-btn:hover {
-  background: var(--accent-primary);
-  color: #FFFFFF;
-  border-color: var(--accent-primary);
-  box-shadow: 0 2px 8px var(--accent-glow);
-}
-
 /* Accent Switcher Button */
 .accent-dot-btn {
   width: 20px;

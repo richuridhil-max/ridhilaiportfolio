@@ -10,49 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initPromptInspector();
   initContactModal();
   initMobileMenu();
-  initFontSwitcher();
   // Clear any legacy client-side photo cache so the official asset always loads
   try { localStorage.removeItem('ridhil_custom_user_photo'); } catch (e) {}
 });
-
-// Hero Font Style Switcher
-function initFontSwitcher() {
-  const fontBtns = document.querySelectorAll('.font-pill-btn');
-  const heroText = document.getElementById('hero-name-display');
-  if (!heroText || !fontBtns.length) return;
-
-  const fontClasses = ['font-preset-poppins', 'font-preset-jakarta', 'font-preset-syne', 'font-preset-space', 'font-preset-inter'];
-
-  function applyFont(fontKey) {
-    fontClasses.forEach(cls => heroText.classList.remove(cls));
-    const targetClass = `font-preset-${fontKey}`;
-    heroText.classList.add(targetClass);
-
-    fontBtns.forEach(btn => {
-      if (btn.getAttribute('data-font') === fontKey) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-  }
-
-  // Restore saved font or default to poppins (override legacy default jakarta)
-  let savedFont = localStorage.getItem('ridhil_hero_font');
-  if (!savedFont || savedFont === 'jakarta') {
-    savedFont = 'poppins';
-  }
-  applyFont(savedFont);
-
-  fontBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const fontKey = btn.getAttribute('data-font');
-      applyFont(fontKey);
-      localStorage.setItem('ridhil_hero_font', fontKey);
-      showToast(`Font Applied: ${btn.textContent}`);
-    });
-  });
-}
 
 // Professional Accent & Color Pattern Switcher
 function initAccentSwitcher() {
