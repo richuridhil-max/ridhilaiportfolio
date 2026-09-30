@@ -249,8 +249,6 @@ function initContactModal() {
   const closeContactBtn = document.getElementById('close-contact-modal-btn');
   const openContactBtns = document.querySelectorAll('.open-contact-modal-btn');
   const copyEmailBtns = document.querySelectorAll('.copy-email-btn');
-  const contactForm = document.getElementById('contact-form');
-  const modalFormScrollBtn = document.getElementById('modal-form-scroll-btn');
 
   function openModal() {
     if (!contactModal) return;
@@ -283,17 +281,6 @@ function initContactModal() {
     });
   }
 
-  if (modalFormScrollBtn) {
-    modalFormScrollBtn.addEventListener('click', () => {
-      closeModal();
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        setTimeout(() => {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
-      }
-    });
-  }
 
   // Handle escape key to close modals
   document.addEventListener('keydown', (e) => {
@@ -311,21 +298,12 @@ function initContactModal() {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const email = 'ridhil.ai.creator@gmail.com';
+      const email = 'richuridhil@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
-        showToast('Email copied: ridhil.ai.creator@gmail.com');
+        showToast('Email copied: richuridhil@gmail.com');
       });
     });
   });
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('form-name')?.value || 'Friend';
-      showToast(`Thanks ${name}! Your project inquiry has been sent.`);
-      contactForm.reset();
-    });
-  }
 }
 
 // 7. MOBILE MENU TOGGLE
