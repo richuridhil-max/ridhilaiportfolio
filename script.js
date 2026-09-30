@@ -342,8 +342,25 @@ function showToast(message) {
   }, 3200);
 }
 
-// 6. VIDEO PLAYER CONTROLS (FULLSCREEN & AUDIO)
+// 6. VIDEO PLAYER CONTROLS (FULLSCREEN & AUDIO WITH AUTO-MUTE/OFF PREVIOUS)
 function initVideoControls() {
+  const registeredVideos = [];
+
+  // Turns off sound and pauses all other videos
+  function deactivateOtherVideos(currentVideo) {
+    registeredVideos.forEach(item => {
+      if (item.video !== currentVideo) {
+        if (!item.video.muted) {
+          item.video.muted = true;
+          item.updateMuteState();
+        }
+        if (!item.video.paused) {
+          item.video.pause();
+        }
+      }
+    });
+  }
+
   function setupVideo(videoId, muteBtnId, muteIconId, fsBtnId, label) {
     const video = document.getElementById(videoId);
     const muteBtn = document.getElementById(muteBtnId);
@@ -367,14 +384,47 @@ function initVideoControls() {
       }
     }
 
+    const controller = {
+      video,
+      muteBtn,
+      muteIcon,
+      updateMuteState
+    };
+    registeredVideos.push(controller);
+    updateMuteState();
+
     if (muteBtn) {
       muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        video.muted = !video.muted;
-        updateMuteState();
-        showToast(video.muted ? `${label} sound muted` : `${label} sound ON 🔊`);
+        if (video.muted) {
+          // Turning sound ON: automatically mute and pause all other previous videos
+          deactivateOtherVideos(video);
+          video.muted = false;
+          updateMuteState();
+          if (video.paused) {
+            video.play().catch(() => {});
+          }
+          showToast(`${label} sound ON 🔊`);
+        } else {
+          // Turning sound OFF:
+          video.muted = true;
+          updateMuteState();
+          showToast(`${label} sound muted`);
+        }
       });
     }
+
+    // When this video plays with sound, turn off any other video
+    video.addEventListener('play', () => {
+      if (!video.muted) {
+        deactivateOtherVideos(video);
+      }
+    });
+
+    // Keep UI icon in sync if mute status changes
+    video.addEventListener('volumechange', () => {
+      updateMuteState();
+    });
 
     function enterFullscreen() {
       if (video.requestFullscreen) {
@@ -404,11 +454,28 @@ function initVideoControls() {
     // Tap video to toggle play/pause
     video.addEventListener('click', () => {
       if (video.paused) {
-        video.play();
+        if (!video.muted) {
+          deactivateOtherVideos(video);
+        }
+        video.play().catch(() => {});
       } else {
         video.pause();
       }
     });
+
+    // Smart auto-mute when video scrolls out of viewport
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting && !video.muted) {
+            video.muted = true;
+            video.pause();
+            updateMuteState();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(video);
+    }
   }
 
   setupVideo('zanotic-video', 'zanotic-mute-btn', 'zanotic-mute-icon', 'zanotic-fs-btn', 'Commercial 1');
