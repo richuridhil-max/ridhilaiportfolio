@@ -161,6 +161,14 @@ const promptDatabase = {
     motion: 'Dynamic hand reveal, luxury automotive reflections, seamless macro camera pan',
     notes: 'Directed and edited as an elite luxury lifestyle commercial, pairing automotive prestige aesthetics with signature fragrance bottle design.'
   },
+  'ordinary': {
+    title: 'The Ordinary — Salicylic Acid Skincare Commercial',
+    tools: 'Live Commercial Direction + Minimalist Studio Lighting + Premiere Pro / Flow Suite',
+    prompt: 'Clean minimalist commercial cinematography for The Ordinary Salicylic Acid 2% serum, natural soft morning window illumination, white marble circular pedestal, subtle cast plant shadows, macro product rotation, 720x1280 vertical commercial format, neutral organic color grade.',
+    negative: 'Overexposed, harsh reflections, dark murky background, jitter, low quality',
+    motion: 'Smooth orbital rotation on pedestal, gentle window shadow movement, focused product reveal',
+    notes: 'Directed and edited as an authentic, high-converting skincare product showcase emphasizing minimalism, clean ingredients, and pristine studio lighting.'
+  },
   'cinema': {
     title: 'Chronos 2099 — Sci-Fi Generative Film',
     tools: 'Nano Banana OmniFlash + Seedance AI Video + Flow',
@@ -367,5 +375,6 @@ function initVideoControls() {
 
   setupVideo('zanotic-video', 'zanotic-mute-btn', 'zanotic-mute-icon', 'zanotic-fs-btn', 'Commercial 1');
   setupVideo('zanotic-video-2', 'zanotic-mute-btn-2', 'zanotic-mute-icon-2', 'zanotic-fs-btn-2', 'Commercial 2');
+  setupVideo('ordinary-video', 'ordinary-mute-btn', 'ordinary-mute-icon', 'ordinary-fs-btn', 'The Ordinary');
 }
 
