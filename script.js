@@ -153,6 +153,14 @@ const promptDatabase = {
     motion: 'Slow tactile reveal, dramatic rim lighting pan, focused macro depth of field',
     notes: 'Directed and edited as a high-conversion commercial video showcase for luxury fragrance branding, combining dynamic product reveal with atmospheric sound design.'
   },
+  'zanotic2': {
+    title: 'Zanotti — ABBA Perfume Luxury Commercial',
+    tools: 'Live Camera Direction + Studio Lighting + Premiere Pro / Flow Suite',
+    prompt: 'Cinematic commercial direction for Zanotti ABBA perfume, vibrant red exotic sports car backdrop, crystalline blue bottle tactile reveal in natural golden sunlight, shallow depth of field, 1080x1920 vertical commercial format, color-matched grading.',
+    negative: 'Overexposed, shaky camera, low resolution, unnatural reflections, jitter',
+    motion: 'Dynamic hand reveal, luxury automotive reflections, seamless macro camera pan',
+    notes: 'Directed and edited as an elite luxury lifestyle commercial, pairing automotive prestige aesthetics with signature fragrance bottle design.'
+  },
   'cinema': {
     title: 'Chronos 2099 — Sci-Fi Generative Film',
     tools: 'Nano Banana OmniFlash + Seedance AI Video + Flow',
@@ -290,69 +298,74 @@ function showToast(message) {
 
 // 6. VIDEO PLAYER CONTROLS (FULLSCREEN & AUDIO)
 function initVideoControls() {
-  const video = document.getElementById('zanotic-video');
-  const muteBtn = document.getElementById('zanotic-mute-btn');
-  const muteIcon = document.getElementById('zanotic-mute-icon');
-  const fsBtn = document.getElementById('zanotic-fs-btn');
-  if (!video) return;
+  function setupVideo(videoId, muteBtnId, muteIconId, fsBtnId, label) {
+    const video = document.getElementById(videoId);
+    const muteBtn = document.getElementById(muteBtnId);
+    const muteIcon = document.getElementById(muteIconId);
+    const fsBtn = document.getElementById(fsBtnId);
+    if (!video) return;
 
-  function updateMuteState() {
-    if (!muteIcon) return;
-    if (video.muted) {
-      muteIcon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
-      `;
-      muteBtn?.setAttribute('title', 'Unmute Sound');
-    } else {
-      muteIcon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-      `;
-      muteBtn?.setAttribute('title', 'Mute Sound');
+    function updateMuteState() {
+      if (!muteIcon) return;
+      if (video.muted) {
+        muteIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+        `;
+        muteBtn?.setAttribute('title', 'Unmute Sound');
+      } else {
+        muteIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+        `;
+        muteBtn?.setAttribute('title', 'Mute Sound');
+      }
     }
-  }
 
-  if (muteBtn) {
-    muteBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      video.muted = !video.muted;
-      updateMuteState();
-      showToast(video.muted ? 'Video sound muted' : 'Sound turned ON 🔊');
-    });
-  }
-
-  function enterFullscreen() {
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
-    } else if (video.webkitEnterFullscreen) {
-      video.webkitEnterFullscreen(); // iOS Safari native full screen
-    } else if (video.msRequestFullscreen) {
-      video.msRequestFullscreen();
+    if (muteBtn) {
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        updateMuteState();
+        showToast(video.muted ? `${label} sound muted` : `${label} sound ON 🔊`);
+      });
     }
-  }
 
-  if (fsBtn) {
-    fsBtn.addEventListener('click', (e) => {
+    function enterFullscreen() {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen(); // iOS Safari native full screen
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    }
+
+    if (fsBtn) {
+      fsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        enterFullscreen();
+      });
+    }
+
+    // Double click / tap on video to enter fullscreen
+    video.addEventListener('dblclick', (e) => {
       e.stopPropagation();
       enterFullscreen();
     });
+
+    // Tap video to toggle play/pause
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
   }
 
-  // Double click / tap on video to enter fullscreen
-  video.addEventListener('dblclick', (e) => {
-    e.stopPropagation();
-    enterFullscreen();
-  });
-
-  // Tap video to toggle play/pause
-  video.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  });
+  setupVideo('zanotic-video', 'zanotic-mute-btn', 'zanotic-mute-icon', 'zanotic-fs-btn', 'Commercial 1');
+  setupVideo('zanotic-video-2', 'zanotic-mute-btn-2', 'zanotic-mute-icon-2', 'zanotic-fs-btn-2', 'Commercial 2');
 }
 

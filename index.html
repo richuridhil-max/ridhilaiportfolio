@@ -416,35 +416,61 @@
         </div>
       </div>
 
-      <!-- Project 2: Avant-Garde Void -->
-      <div class="project-card project-item group" data-category="fashion">
-        <div class="project-image-wrap">
-          <img src="assets/project_fashion.jpg" alt="Avant-Garde Void Fashion Campaign" class="w-full h-full object-cover">
-          <div class="absolute top-4 left-4 flex gap-2">
-            <span class="tech-tag">OmniFlash</span>
-            <span class="tech-tag">Flow</span>
-          </div>
-          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
-            <button class="inspect-prompt-btn px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs tracking-wide shadow-lg hover:bg-slate-100 transition-colors" data-key="fashion">
-              Behind The Generation ↗
+      <!-- Project 2: Zanotti — ABBA Perfume Luxury Commercial -->
+      <div class="project-card project-item group" data-category="commercial cinema">
+        <div class="project-image-wrap vertical-reel bg-slate-950">
+          <video 
+            id="zanotic-video-2"
+            src="assets/abba_zanotic_1.mp4" 
+            poster="assets/abba_zanotic_1_poster.jpg"
+            class="w-full h-full object-cover cursor-pointer" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="metadata">
+          </video>
+
+          <!-- Top Floating Action Controls: Sound & Fullscreen -->
+          <div class="absolute top-3 right-3 flex items-center gap-2 z-30">
+            <!-- Mute / Unmute Button -->
+            <button 
+              id="zanotic-mute-btn-2" 
+              type="button"
+              class="w-9 h-9 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-110 border border-white/10" 
+              title="Unmute Sound" 
+              aria-label="Toggle Sound">
+              <svg id="zanotic-mute-icon-2" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+              </svg>
+            </button>
+
+            <!-- Fullscreen Button -->
+            <button 
+              id="zanotic-fs-btn-2" 
+              type="button"
+              class="w-9 h-9 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-110 border border-white/10" 
+              title="Watch Fullscreen" 
+              aria-label="Toggle Fullscreen">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0 0l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+              </svg>
             </button>
           </div>
+
         </div>
         <div class="p-6">
-          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
-            <span>High Fashion Editorial</span>
-            <span>2026</span>
-          </div>
           <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
-            Avant-Garde Void — Liquid Silk
+            Zanotti — ABBA Perfume Luxury Commercial
           </h3>
           <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 mb-4 leading-relaxed">
-            Haute couture visual campaign exploring iridescent organic drapery and brutalist architecture. Generated for an editorial digital lookbook.
+            Cinematic luxury fragrance commercial featuring tactile product interaction, signature blue bottle reveal against automotive reflections, and premium studio sound design.
           </p>
           <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
-            <span class="text-xs font-medium text-slate-500">Reach: 2.4M Views</span>
-            <button class="inspect-prompt-btn text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1" data-key="fashion">
-              View Recipe & Prompt <span>↗</span>
+            <span class="text-xs font-medium text-slate-500">Commercial Direction</span>
+            <button class="inspect-prompt-btn text-xs font-semibold text-blue-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1 cursor-pointer" data-key="zanotic2">
+              View Production Details <span>↗</span>
             </button>
           </div>
         </div>
