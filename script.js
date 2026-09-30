@@ -342,11 +342,26 @@ function showToast(message) {
   }, 3200);
 }
 
-// 6. VIDEO PLAYER CONTROLS (FULLSCREEN & AUDIO WITH AUTO-MUTE/OFF PREVIOUS)
+// 6. VIDEO PLAYER CONTROLS (FULLSCREEN, AUTOMATIC SCROLL-SOUND & SMART SYNC)
 function initVideoControls() {
   const registeredVideos = [];
+  let soundEnabled = true;      // Auto-sound on scroll enabled by default
+  let userInteracted = false;   // Browser audio unlock tracker
+  let activeController = null;  // Currently active sounding video
 
-  // Turns off sound and pauses all other videos
+  // Audio unlock listener for browser autoplay policy
+  function unlockAudio() {
+    if (!userInteracted) {
+      userInteracted = true;
+      updateActiveVideoOnScroll();
+    }
+  }
+
+  ['pointerdown', 'touchstart', 'click', 'keydown', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, unlockAudio, { passive: true, once: false });
+  });
+
+  // Helper to mute & pause all other videos except the current one
   function deactivateOtherVideos(currentVideo) {
     registeredVideos.forEach(item => {
       if (item.video !== currentVideo) {
@@ -388,16 +403,42 @@ function initVideoControls() {
       video,
       muteBtn,
       muteIcon,
+      label,
       updateMuteState
     };
     registeredVideos.push(controller);
     updateMuteState();
 
+    // Hover on desktop project card switches active video with sound
+    const card = video.closest('.project-card');
+    if (card) {
+      card.addEventListener('mouseenter', () => {
+        if (soundEnabled && userInteracted && activeController !== controller) {
+          activeController = controller;
+          registeredVideos.forEach(item => {
+            if (item === controller) {
+              item.video.muted = false;
+              item.video.play().catch(() => {});
+              item.updateMuteState();
+            } else {
+              item.video.muted = true;
+              item.video.pause();
+              item.updateMuteState();
+            }
+          });
+        }
+      });
+    }
+
+    // Manual mute button toggle
     if (muteBtn) {
       muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        userInteracted = true;
         if (video.muted) {
-          // Turning sound ON: automatically mute and pause all other previous videos
+          // User turned sound ON
+          soundEnabled = true;
+          activeController = controller;
           deactivateOtherVideos(video);
           video.muted = false;
           updateMuteState();
@@ -406,7 +447,8 @@ function initVideoControls() {
           }
           showToast(`${label} sound ON 🔊`);
         } else {
-          // Turning sound OFF:
+          // User manually turned sound OFF
+          soundEnabled = false;
           video.muted = true;
           updateMuteState();
           showToast(`${label} sound muted`);
@@ -414,14 +456,14 @@ function initVideoControls() {
       });
     }
 
-    // When this video plays with sound, turn off any other video
+    // When video plays with sound, silence other videos
     video.addEventListener('play', () => {
       if (!video.muted) {
         deactivateOtherVideos(video);
       }
     });
 
-    // Keep UI icon in sync if mute status changes
+    // Synchronize UI icon on volume/mute change
     video.addEventListener('volumechange', () => {
       updateMuteState();
     });
@@ -453,33 +495,104 @@ function initVideoControls() {
 
     // Tap video to toggle play/pause
     video.addEventListener('click', () => {
+      userInteracted = true;
       if (video.paused) {
-        if (!video.muted) {
+        if (soundEnabled) {
+          video.muted = false;
           deactivateOtherVideos(video);
         }
         video.play().catch(() => {});
       } else {
         video.pause();
       }
+      updateMuteState();
     });
-
-    // Smart auto-mute when video scrolls out of viewport
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting && !video.muted) {
-            video.muted = true;
-            video.pause();
-            updateMuteState();
-          }
-        });
-      }, { threshold: 0.15 });
-      observer.observe(video);
-    }
   }
 
+  // Register all portfolio videos
   setupVideo('zanotic-video', 'zanotic-mute-btn', 'zanotic-mute-icon', 'zanotic-fs-btn', 'Commercial 1');
   setupVideo('zanotic-video-2', 'zanotic-mute-btn-2', 'zanotic-mute-icon-2', 'zanotic-fs-btn-2', 'Commercial 2');
   setupVideo('ordinary-video', 'ordinary-mute-btn', 'ordinary-mute-icon', 'ordinary-fs-btn', 'The Ordinary');
+
+  // Automatic Viewport & Scroll Center Detection
+  function findFocusedVideo() {
+    const viewportCenter = window.innerHeight / 2;
+    let bestCandidate = null;
+    let minDistance = Infinity;
+
+    registeredVideos.forEach(item => {
+      const rect = item.video.getBoundingClientRect();
+      // Video must be clearly inside the viewport
+      if (rect.bottom > 80 && rect.top < window.innerHeight - 80) {
+        const itemCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(itemCenter - viewportCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          bestCandidate = item;
+        }
+      }
+    });
+
+    return bestCandidate;
+  }
+
+  // Update which video plays with sound as user scrolls
+  function updateActiveVideoOnScroll() {
+    const candidate = findFocusedVideo();
+
+    if (candidate) {
+      if (candidate !== activeController) {
+        activeController = candidate;
+
+        registeredVideos.forEach(item => {
+          if (item === candidate) {
+            if (soundEnabled && userInteracted) {
+              item.video.muted = false;
+            }
+            if (item.video.paused) {
+              item.video.play().catch(() => {});
+            }
+            item.updateMuteState();
+          } else {
+            // Previous / other video automatically turns off sound and pauses
+            item.video.muted = true;
+            item.video.pause();
+            item.updateMuteState();
+          }
+        });
+      } else {
+        // Still on same video: ensure unmuted if user recently unlocked audio
+        if (soundEnabled && userInteracted && candidate.video.muted) {
+          candidate.video.muted = false;
+          candidate.updateMuteState();
+        }
+      }
+    } else {
+      // User scrolled out of the video showcase section (e.g. to Hero or Contact)
+      if (activeController) {
+        registeredVideos.forEach(item => {
+          item.video.muted = true;
+          item.video.pause();
+          item.updateMuteState();
+        });
+        activeController = null;
+      }
+    }
+  }
+
+  // High performance throttled scroll listener (60-120fps sync)
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        updateActiveVideoOnScroll();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  // Initial check on page load
+  setTimeout(updateActiveVideoOnScroll, 300);
 }
 
