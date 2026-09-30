@@ -283,39 +283,14 @@ function initContactModal() {
     });
   }
 
-  const toggleFormBtn = document.getElementById('toggle-inquiry-form-btn');
-  const inquiryFormWrapper = document.getElementById('inquiry-form-wrapper');
-
-  if (toggleFormBtn && inquiryFormWrapper) {
-    toggleFormBtn.addEventListener('click', () => {
-      const isHidden = inquiryFormWrapper.classList.contains('hidden');
-      if (isHidden) {
-        inquiryFormWrapper.classList.remove('hidden');
-        inquiryFormWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        toggleFormBtn.innerHTML = `<span>Close project inquiry form</span> <span class="text-cyan-400">↑</span>`;
-      } else {
-        inquiryFormWrapper.classList.add('hidden');
-        toggleFormBtn.innerHTML = `<span>Or fill out the project inquiry form</span> <span class="group-hover:translate-x-1.5 transition-transform text-cyan-400">→</span>`;
-      }
-    });
-  }
-
   if (modalFormScrollBtn) {
     modalFormScrollBtn.addEventListener('click', () => {
       closeModal();
-      if (inquiryFormWrapper) {
-        inquiryFormWrapper.classList.remove('hidden');
-        if (toggleFormBtn) {
-          toggleFormBtn.innerHTML = `<span>Close project inquiry form</span> <span class="text-cyan-400">↑</span>`;
-        }
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
         setTimeout(() => {
-          inquiryFormWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      } else {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
           contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        }, 150);
       }
     });
   }
