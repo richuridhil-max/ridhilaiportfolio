@@ -243,14 +243,72 @@ function initPromptInspector() {
   }
 }
 
-// 5. CONTACT DRAWER / MODAL & EMAIL COPY
+// 5. CONTACT MODAL (CALL, WHATSAPP, EMAIL)
 function initContactModal() {
+  const contactModal = document.getElementById('contact-action-modal');
+  const closeContactBtn = document.getElementById('close-contact-modal-btn');
+  const openContactBtns = document.querySelectorAll('.open-contact-modal-btn');
   const copyEmailBtns = document.querySelectorAll('.copy-email-btn');
   const contactForm = document.getElementById('contact-form');
+  const modalFormScrollBtn = document.getElementById('modal-form-scroll-btn');
+
+  function openModal() {
+    if (!contactModal) return;
+    contactModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!contactModal) return;
+    contactModal.classList.remove('open');
+    document.body.style.overflow = 'auto';
+  }
+
+  openContactBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  if (closeContactBtn) {
+    closeContactBtn.addEventListener('click', closeModal);
+  }
+
+  if (contactModal) {
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        closeModal();
+      }
+    });
+  }
+
+  if (modalFormScrollBtn) {
+    modalFormScrollBtn.addEventListener('click', () => {
+      closeModal();
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Handle escape key to close modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (contactModal?.classList.contains('open')) closeModal();
+      const promptModal = document.getElementById('prompt-modal');
+      if (promptModal?.classList.contains('open')) {
+        promptModal.classList.remove('open');
+        document.body.style.overflow = 'auto';
+      }
+    }
+  });
 
   copyEmailBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const email = 'ridhil.ai.creator@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
         showToast('Email copied: ridhil.ai.creator@gmail.com');
