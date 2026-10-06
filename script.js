@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactModal();
   initMobileMenu();
   initVideoControls();
+  initCertificateModal();
   // Clear any legacy client-side photo cache so the official asset always loads
   try { localStorage.removeItem('ridhil_custom_user_photo'); } catch (e) {}
 });
@@ -291,6 +292,11 @@ function initContactModal() {
         promptModal.classList.remove('open');
         document.body.style.overflow = 'auto';
       }
+      const certModal = document.getElementById('certificate-modal');
+      if (certModal?.classList.contains('open')) {
+        certModal.classList.remove('open');
+        document.body.style.overflow = 'auto';
+      }
     }
   });
 
@@ -304,6 +310,162 @@ function initContactModal() {
       });
     });
   });
+}
+
+// 6. 4K CERTIFICATE INSPECTION & ZOOM MODAL
+function initCertificateModal() {
+  const modal = document.getElementById('certificate-modal');
+  const closeBtn = document.getElementById('close-cert-modal-btn');
+  const openBtns = document.querySelectorAll('.inspect-cert-btn, .cert-preview-clickable');
+  const img = document.getElementById('cert-full-image');
+  const viewport = document.getElementById('cert-viewport');
+  const zoomInBtn = document.getElementById('cert-zoom-in-btn');
+  const zoomOutBtn = document.getElementById('cert-zoom-out-btn');
+  const zoomResetBtn = document.getElementById('cert-zoom-reset-btn');
+  const zoomLevelText = document.getElementById('cert-zoom-level');
+
+  if (!modal || !img) return;
+
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+
+  function updateTransform() {
+    img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    if (zoomLevelText) {
+      zoomLevelText.textContent = `${Math.round(scale * 100)}%`;
+    }
+    if (viewport) {
+      if (scale > 1) {
+        viewport.style.cursor = 'grab';
+      } else {
+        viewport.style.cursor = 'default';
+        viewport.classList.remove('grabbing');
+      }
+    }
+  }
+
+  function resetZoom() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    updateTransform();
+  }
+
+  function openModal() {
+    resetZoom();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = 'auto';
+    resetZoom();
+  }
+
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  if (zoomInBtn) {
+    zoomInBtn.addEventListener('click', () => {
+      scale = Math.min(scale + 0.35, 3.5);
+      updateTransform();
+    });
+  }
+
+  if (zoomOutBtn) {
+    zoomOutBtn.addEventListener('click', () => {
+      scale = Math.max(scale - 0.35, 0.7);
+      if (scale <= 1) {
+        translateX = 0;
+        translateY = 0;
+      }
+      updateTransform();
+    });
+  }
+
+  if (zoomResetBtn) {
+    zoomResetBtn.addEventListener('click', resetZoom);
+  }
+
+  // Mouse wheel zoom inside viewport
+  if (viewport) {
+    viewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 0.2 : -0.2;
+      const nextScale = Math.min(Math.max(scale + delta, 0.7), 3.5);
+      if (nextScale !== scale) {
+        scale = nextScale;
+        if (scale <= 1) {
+          translateX = 0;
+          translateY = 0;
+        }
+        updateTransform();
+      }
+    }, { passive: false });
+
+    // Drag / Pan image when zoomed in
+    viewport.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return; // Primary click only
+      if (scale <= 1) return;
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      viewport.style.cursor = 'grabbing';
+      viewport.classList.add('grabbing');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        viewport.style.cursor = scale > 1 ? 'grab' : 'default';
+        viewport.classList.remove('grabbing');
+      }
+    });
+
+    // Touch support for mobile panning
+    viewport.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1 && scale > 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - translateX;
+        startY = e.touches[0].clientY - translateY;
+      }
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      translateX = e.touches[0].clientX - startX;
+      translateY = e.touches[0].clientY - startY;
+      updateTransform();
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  }
 }
 
 // 7. MOBILE MENU TOGGLE
